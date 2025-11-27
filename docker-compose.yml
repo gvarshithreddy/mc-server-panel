@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  mc-panel:
+    # CHANGE THIS to your Docker Hub username
+    image: zondybro12/mc-panel:latest
+    container_name: mc-neon-panel
+    ports:
+      - "3000:3000"
+      - "25565:25565"
+    environment:
+      # Friend pastes their token here
+      - NGROK_AUTHTOKEN=YOUR_NGROK_AUTHTOKEN_VERIFIED_ACCOUNT
+    volumes:
+      - ./my_servers:/app/servers
+    restart: unless-stopped
