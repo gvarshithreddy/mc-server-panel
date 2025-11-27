@@ -2,15 +2,21 @@ version: "3.8"
 
 services:
   mc-panel:
-    # CHANGE THIS to your Docker Hub username
     image: zondybro12/mc-panel:latest
     container_name: mc-neon-panel
+
+    # -----------------------------------------------------------
+    # CRITICAL FIX FOR MAC USERS (M1/M2/M3)
+    # This forces the Mac to use the Windows-compatible image.
+    platform: linux/amd64
+    # -----------------------------------------------------------
+
     ports:
-      - "3000:3000"
+      # If they get a "Port 3000 in use" error, change the first number to 3001
+      - "3000:3001"
       - "25565:25565"
     environment:
-      # Friend pastes their token here
-      - NGROK_AUTHTOKEN=YOUR_NGROK_AUTHTOKEN_VERIFIED_ACCOUNT
+      - NGROK_AUTHTOKEN=your_token_here
     volumes:
       - ./my_servers:/app/servers
     restart: unless-stopped
