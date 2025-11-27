@@ -13,7 +13,7 @@ services:
 
     ports:
       # If they get a "Port 3000 in use" error, change the first number to 3001
-      - "3000:3001"
+      - "3000:3000"
       - "25565:25565"
     environment:
       - NGROK_AUTHTOKEN=your_token_here
