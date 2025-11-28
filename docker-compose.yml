@@ -2,21 +2,23 @@ version: "3.8"
 
 services:
   mc-panel:
+    # 1. Point to your remote image
     image: zondybro12/mc-panel:latest
-    container_name: mc-neon-panel
 
-    # -----------------------------------------------------------
-    # CRITICAL FIX FOR MAC USERS (M1/M2/M3)
-    # This forces the Mac to use the Windows-compatible image.
+    # 2. COMMENT OUT or REMOVE the 'build' line
+    # build: .
+
+    container_name: mc-neon-panel
     platform: linux/amd64
-    # -----------------------------------------------------------
 
     ports:
-      # If they get a "Port 3000 in use" error, change the first number to 3001
       - "3000:3000"
-      - "25565:25565"
+      - "25565-25570:25565-25570"
+
     environment:
-      - NGROK_AUTHTOKEN=your_token_here
+      - NGROK_AUTHTOKEN=your_authtoken_here
+
     volumes:
       - ./my_servers:/app/servers
+
     restart: unless-stopped
